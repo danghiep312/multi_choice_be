@@ -1,0 +1,46 @@
+asyncapi: 3.0.0
+info:
+  title: Notification Kafka API
+  version: 1.0.0
+  description: |
+    This Kafka API allows you to send and receive notification.
+servers:
+  kafka:
+    host: '10.148.0.17:29092'
+    protocol: kafka
+    description: The main Kafka server for notification.
+channels:
+  notification:
+    address: notification
+    messages:
+      NotificationInputDto:
+        $ref: '#/components/messages/notificationMessage'
+operations:
+  sendNotification:
+    action: send
+    channel:
+      $ref: '#/channels/notification'
+    summary: Publish a notification.
+    messages:
+      - $ref: '#/channels/notification/messages/NotificationInputDto'
+  receiveNotification:
+    action: receive
+    channel:
+      $ref: '#/channels/notification'
+    summary: Subscribe to receive notification.
+    messages:
+      - $ref: '#/channels/notification/messages/NotificationInputDto'
+components:
+  messages:
+    notificationMessage:
+      name: NotificationInputDto
+      title: Notification Message
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          topic:
+            type: string
+          message:
+            type: string
+            description: The content of the notification message.

@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  app:
+    image: notification-service:latest
+    restart: always
+    container_name: notification-service
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=${KAFKA_BOOTSTRAP_SERVERS}
+    network_mode: "host"

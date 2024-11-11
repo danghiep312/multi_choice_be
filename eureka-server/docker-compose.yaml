@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+  app:
+    image: eureka-server:latest
+    restart: always
+    container_name: social_media
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8762:8761"

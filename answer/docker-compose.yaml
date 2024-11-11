@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  app:
+    image: answer-service:latest
+    restart: always
+    container_name: answer-service
+    environment:
+      - DATASOURCE_URL=${DATASOURCE_URL}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - EUREKA_URL=${EUREKA_URL}
+    network_mode: "host"

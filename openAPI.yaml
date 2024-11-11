@@ -1,0 +1,1522 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+paths:
+
+  /api/v1/create-quiz/{requestId}:
+    post:
+      tags:
+        - create-quiz
+      operationId: createQuiz
+      parameters:
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: role
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuizInputDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseCreateQuizOutputDto'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /api/v1/create-quiz/status/{requestId}:
+    get:
+      tags:
+        - create-quiz
+      operationId: status
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseString'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+
+  /api/v1/join-quiz/submit/{quizId}/{requestId}:
+    post:
+      tags:
+        - join-quiz
+      operationId: submit
+      parameters:
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitInputDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseSubmitOutputDto'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /api/v1/join-quiz/{quizId}/{requestId}:
+    get:
+      tags:
+        - join-quiz
+      operationId: join
+      parameters:
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseJoinQuizOutputDto'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /api/v1/join-quiz/status/{requestId}:
+    get:
+      tags:
+        - join-quiz
+      operationId: getStatus
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseString'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /api/v1/answer/{quizId}:
+    get:
+      tags: 
+        - answer
+      operationId: getAnswersByQuizId
+      parameters:
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseListAnswerOutputDto'
+    post:
+      tags:
+        - answer
+      operationId: createAnswer
+      parameters:
+        - name: username
+          in: header
+          required: true
+          schema:
+            type: string
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerInputDto'
+        required: true
+      responses:
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseAnswerOutputDto'
+                
+  /api/v1/config:
+    post:
+      tags:
+        - config
+      operationId: createConfig
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfigInputDto'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseConfigOutputDto'
+  /api/v1/config/{id}:
+    get:
+      tags:
+        - config
+      operationId: findByIdConfig
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseConfigOutputDto'
+  /api/v1/questions:
+    post:
+      tags:
+        - question
+      operationId: createQuestion
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuestionInputDto'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseQuestionOutputDto'
+  /api/v1/questions/{id}:
+    get:
+      tags:
+        - question
+      operationId: findByIdQuestion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseQuestionOutputDto'
+  /api/v1/questions/quiz/{quizId}:
+    get:
+      tags:
+        - question
+      operationId: getQuestionsByQuiz
+      parameters:
+        - name: quizId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseListQuestionOutputDto'
+                
+  /api/v1/quiz:
+    post:
+      tags:
+        - quiz
+      operationId: create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuizInputDto'
+        required: true
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseQuizOutputDto'
+  /api/v1/quiz/{id}:
+    get:
+      tags:
+        - quiz
+      operationId: findByIdQuiz
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseQuizOutputDto'
+                
+  /api/v1/users:
+    post:
+      tags:
+        - user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserInputDto'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseUserOutputDto'
+  /api/v1/users/{username}:
+    get:
+      tags:
+        - user
+      operationId: getUser
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseUserOutputDto'
+                
+  /api/v1/auth/register:
+    post:
+      tags:
+        - auth
+      operationId: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterInputDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseRegisterOutputDto'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+  /api/v1/auth/login:
+    post:
+      tags:
+        - auth
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginInputDto'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponseLoginOutputDto'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '409':
+          description: Conflict
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+    
+components:
+  schemas:
+    BaseResponse:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          type: object
+    Status:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CreateQuizInputDto:
+      required:
+        - config
+        - name
+        - questions
+        - users
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        config:
+          $ref: '#/components/schemas/ConfigInputDto'
+        users:
+          type: array
+          items:
+            type: string
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionCreateQuizInputDto'
+    QuestionCreateQuizInputDto:
+      required:
+        - choices
+        - multipleChoice
+        - order
+        - questionText
+      type: object
+      properties:
+        questionText:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceInputDto'
+        order:
+          type: integer
+          format: int64
+        multipleChoice:
+          type: boolean
+    BaseResponseCreateQuizOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/CreateQuizOutputDto'
+    CreateQuizOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserOutputDto'
+        config:
+          $ref: '#/components/schemas/ConfigOutputDto'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionOutputDto'
+    AnswerInputDto:
+      type: object
+      properties:
+        questionId:
+          type: integer
+          format: int64
+        choiceId:
+          type: integer
+          format: int64
+        score:
+          type: number
+          format: double
+    AnswerOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        quizId:
+          type: integer
+          format: int64
+        questionId:
+          type: integer
+          format: int64
+        choiceId:
+          type: integer
+          format: int64
+        username:
+          type: string
+        score:
+          type: number
+          format: double
+    BaseResponseAnswerOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/AnswerOutputDto'
+    BaseResponseListAnswerOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnswerOutputDto'
+    SubmitInputDto:
+      type: object
+      properties:
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserChoiceInputDto'
+    UserChoiceInputDto:
+      type: object
+      properties:
+        questionId:
+          type: integer
+          format: int64
+        choiceId:
+          type: integer
+          format: int64
+    BaseResponseSubmitOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/SubmitOutputDto'
+    ChoiceContainCorrectOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        choiceText:
+          type: string
+        order:
+          type: integer
+          format: int64
+        correct:
+          type: boolean
+        selected:
+          type: boolean
+    ChoiceInputDto:
+      required:
+        - choiceText
+        - correct
+        - order
+      type: object
+      properties:
+        choiceText:
+          type: string
+        correct:
+          type: boolean
+        order:
+          type: integer
+          format: int64
+          
+    QuestionInputDto:
+      required:
+        - choices
+        - multipleChoice
+        - order
+        - questionText
+        - quizId
+      type: object
+      properties:
+        questionText:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceInputDto'
+        order:
+          type: integer
+          format: int64
+        quizId:
+          type: integer
+          format: int64
+        multipleChoice:
+          type: boolean
+          
+    ConfigInputDto:
+      required:
+        - duration
+        - startTime
+      type: object
+      properties:
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int64   
+          
+    BaseResponseQuestionOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/QuestionOutputDto'
+          
+    QuestionContainCorrectOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        questionText:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceContainCorrectOutputDto'
+        order:
+          type: integer
+          format: int64
+        multipleChoice:
+          type: boolean
+    SubmitOutputDto:
+      type: object
+      properties:
+        score:
+          type: number
+          format: double
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionContainCorrectOutputDto'
+    BaseResponseJoinQuizOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/JoinQuizOutputDto'
+    ChoiceOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        choiceText:
+          type: string
+        order:
+          type: integer
+          format: int64
+          
+    ConfigOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        startTime:
+          type: string
+          format: date-time
+        duration:
+          type: integer
+          format: int64
+    JoinQuizOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        config:
+          $ref: '#/components/schemas/ConfigOutputDto'
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionOutputDto'
+    QuestionOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        questionText:
+          type: string
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChoiceOutputDto'
+        order:
+          type: integer
+          format: int64
+        multipleChoice:
+          type: boolean
+    BaseResponseString:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          type: string
+    BaseResponseConfigOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/ConfigOutputDto'
+    BaseResponseListQuestionOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/QuestionOutputDto'
+    BaseResponseQuizOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/QuizOutputDto'
+    QuizInputDto:
+      required:
+        - configId
+        - name
+        - authorName
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        configId:
+          type: integer
+          format: int64
+        authorName:
+          type: string
+          
+    QuizOutputDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        description:
+          type: string
+        configId:
+          type: integer
+          format: int64
+        authorName:
+          type: string
+          
+    BaseResponseUserOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/UserOutputDto'
+    UserOutputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        chatId:
+          type: string
+    UserInputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        chatId:
+          type: string
+    RegisterInputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        fullName:
+          type: string
+        chatId:
+          type: string
+    BaseResponseRegisterOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/RegisterOutputDto'
+    RegisterOutputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        fullName:
+          type: string
+        chatId:
+          type: string
+    LoginInputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    BaseResponseLoginOutputDto:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        data:
+          $ref: '#/components/schemas/LoginOutputDto'
+    LoginOutputDto:
+      type: object
+      properties:
+        username:
+          type: string
+        accessToken:
+          type: string
+        refreshToken:
+          type: string
+        fullName:
+          type: string
+        role:
+          type: string

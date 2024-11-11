@@ -1,0 +1,14 @@
+version: '3.3'
+services:
+  app:
+    image: question-service:latest
+    restart: always
+    container_name: question-service
+    environment:
+      - DATASOURCE_URL=${DATASOURCE_URL}
+      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
+      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
+      - EUREKA_URL=${EUREKA_URL}
+    ports:
+      - "8080:8080"
+    network_mode: "host"
