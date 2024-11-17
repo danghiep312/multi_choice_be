@@ -2,21 +2,43 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rest-service-design-document" />
+        <module name="quiz" />
+        <module name="notification" />
+        <module name="join-quiz" />
         <module name="answer" />
+        <module name="create-quiz" />
+        <module name="question" />
+        <module name="auth" />
         <module name="base-project" />
+        <module name="rest-service-design-document" />
+        <module name="config" />
+        <module name="eureka-server" />
+        <module name="user" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="untitled" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="answer" options="-parameters" />
+      <module name="auth" options="-parameters" />
       <module name="base-project" options="-parameters" />
+      <module name="config" options="-parameters" />
+      <module name="create-quiz" options="-parameters" />
+      <module name="eureka-server" options="-parameters" />
+      <module name="join-quiz" options="-parameters" />
+      <module name="notification" options="-parameters" />
+      <module name="question" options="-parameters" />
+      <module name="quiz" options="-parameters" />
       <module name="rest-service-design-document" options="-parameters" />
+      <module name="user" options="-parameters" />
     </option>
   </component>
 </project>

@@ -2,7 +2,16 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/answer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/base-project/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/create-quiz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/join-quiz/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/notification/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/question/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/quiz/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/rest-service-design-document/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/user/src/main/java" charset="UTF-8" />
   </component>
 </project>
