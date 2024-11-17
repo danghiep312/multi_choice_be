@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="rest-service-design-document" />
+        <module name="answer" />
         <module name="base-project" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="answer" options="-parameters" />
       <module name="base-project" options="-parameters" />
       <module name="rest-service-design-document" options="-parameters" />
     </option>

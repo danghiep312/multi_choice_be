@@ -24,4 +24,9 @@ public class UserController {
     BaseResponse<UserOutputDto> createUser(@RequestBody UserInputDto userInputDto) {
         return BaseResponse.success(userService.createUser(userInputDto));
     }
+
+    @GetMapping("/hello")
+    BaseResponse<String> hello() {
+        return BaseResponse.success("Hello");
+    }
 }
