@@ -14,9 +14,9 @@
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
         <option value="$PROJECT_DIR$/join-quiz/pom.xml" />
         <option value="$PROJECT_DIR$/notification/pom.xml" />
-        <option value="$PROJECT_DIR$/question/pom.xml" />
         <option value="$PROJECT_DIR$/quiz/pom.xml" />
         <option value="$PROJECT_DIR$/user/pom.xml" />
+        <option value="$PROJECT_DIR$/question/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
