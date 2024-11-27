@@ -1,12 +1,17 @@
 version: '3.3'
 services:
-  app:
+  user-service:
     image: user-service:latest
-    restart: always
+    restart: unless-stopped
     container_name: user-service
     environment:
-      - DATASOURCE_URL=${DATASOURCE_URL}
-      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
-      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
-      - EUREKA_URL=${EUREKA_URL}
-    network_mode: "host"
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      # - EUREKA_URL=http://localhost:8761/eureka
+    ports:
+      - "8081:8081"
+    networks:
+      - multiple_choice
+networks:
+  multiple_choice:

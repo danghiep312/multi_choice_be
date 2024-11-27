@@ -1,4 +1,4 @@
-package com.example.config.entitiy;
+package com.example.config.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
-import java.time.LocalTime;
 import java.time.OffsetDateTime;
 
 @Entity

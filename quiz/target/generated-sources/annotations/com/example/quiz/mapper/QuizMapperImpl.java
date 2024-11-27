@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-19T23:09:49+0700",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.4 (Amazon.com Inc.)"
+    date = "2024-11-25T00:46:35+0700",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class QuizMapperImpl implements QuizMapper {
@@ -22,10 +22,10 @@ public class QuizMapperImpl implements QuizMapper {
 
         QuizEntity quizEntity = new QuizEntity();
 
-        quizEntity.setName( quizInputDto.getName() );
-        quizEntity.setDescription( quizInputDto.getDescription() );
-        quizEntity.setConfigId( quizInputDto.getConfigId() );
         quizEntity.setAuthorName( quizInputDto.getAuthorName() );
+        quizEntity.setConfigId( quizInputDto.getConfigId() );
+        quizEntity.setDescription( quizInputDto.getDescription() );
+        quizEntity.setName( quizInputDto.getName() );
 
         return quizEntity;
     }
@@ -38,11 +38,11 @@ public class QuizMapperImpl implements QuizMapper {
 
         QuizOutputDto quizOutputDto = new QuizOutputDto();
 
+        quizOutputDto.setAuthorName( quizEntity.getAuthorName() );
+        quizOutputDto.setConfigId( quizEntity.getConfigId() );
+        quizOutputDto.setDescription( quizEntity.getDescription() );
         quizOutputDto.setId( quizEntity.getId() );
         quizOutputDto.setName( quizEntity.getName() );
-        quizOutputDto.setDescription( quizEntity.getDescription() );
-        quizOutputDto.setConfigId( quizEntity.getConfigId() );
-        quizOutputDto.setAuthorName( quizEntity.getAuthorName() );
 
         return quizOutputDto;
     }

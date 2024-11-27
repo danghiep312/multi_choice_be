@@ -86,7 +86,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.proptit.social_media.SocialMediaApplication</mainClass>
+                            <mainClass>com.example.baseproject.BaseProjectApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

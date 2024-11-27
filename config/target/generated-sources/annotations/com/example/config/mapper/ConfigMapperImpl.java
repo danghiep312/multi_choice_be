@@ -2,14 +2,14 @@ package com.example.config.mapper;
 
 import com.example.config.dto.ConfigInputDto;
 import com.example.config.dto.ConfigOutputDto;
-import com.example.config.entitiy.ConfigEntity;
+import com.example.config.entity.ConfigEntity;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-19T22:23:50+0700",
-    comments = "version: 1.5.3.Final, compiler: javac, environment: Java 21.0.4 (Amazon.com Inc.)"
+    date = "2024-11-25T00:46:27+0700",
+    comments = "version: 1.5.3.Final, compiler: Eclipse JDT (IDE) 3.40.0.z20241023-1306, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class ConfigMapperImpl implements ConfigMapper {
@@ -22,8 +22,8 @@ public class ConfigMapperImpl implements ConfigMapper {
 
         ConfigEntity configEntity = new ConfigEntity();
 
-        configEntity.setStartTime( configOutputDto.getStartTime() );
         configEntity.setDuration( configOutputDto.getDuration() );
+        configEntity.setStartTime( configOutputDto.getStartTime() );
 
         return configEntity;
     }
@@ -36,9 +36,9 @@ public class ConfigMapperImpl implements ConfigMapper {
 
         ConfigOutputDto configOutputDto = new ConfigOutputDto();
 
+        configOutputDto.setDuration( configEntity.getDuration() );
         configOutputDto.setId( configEntity.getId() );
         configOutputDto.setStartTime( configEntity.getStartTime() );
-        configOutputDto.setDuration( configEntity.getDuration() );
 
         return configOutputDto;
     }

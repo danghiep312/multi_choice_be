@@ -1,7 +1,7 @@
 package com.example.config.repository;
 
 
-import com.example.config.entitiy.ConfigEntity;
+import com.example.config.entity.ConfigEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

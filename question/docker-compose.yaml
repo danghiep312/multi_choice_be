@@ -1,14 +1,17 @@
-version: '3.3'
+version: "3.9"
 services:
-  app:
-    image: question-service:latest
-    restart: always
-    container_name: question-service
-    environment:
-      - DATASOURCE_URL=${DATASOURCE_URL}
-      - DATASOURCE_USERNAME=${DATASOURCE_USERNAME}
-      - DATASOURCE_PASSWORD=${DATASOURCE_PASSWORD}
-      - EUREKA_URL=${EUREKA_URL}
-    ports:
-      - "8082:8082"
-    network_mode: "host"
+   question-service:
+     image: question-service:latest
+     restart: unless-stopped
+     container_name: question-service
+     environment:
+       - DATASOURCE_URL=jdbc:postgresql://localhost:5434/quiz_lab?createDatabaseIfNotExist=true
+       - DATASOURCE_USERNAME=postgres
+       - DATASOURCE_PASSWORD=Abc@123
+       - EUREKA_URL=http://localhost:8762/eureka
+     ports:
+       - "8082:8082"
+
+volumes:
+  db-data:
+  redis-data:

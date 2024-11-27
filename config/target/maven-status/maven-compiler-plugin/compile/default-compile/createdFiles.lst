@@ -1,6 +1,5 @@
 com\example\config\controller\ConfigController.class
 com\example\config\exeption\NotFoundException.class
-com\example\config\entitiy\ConfigEntity.class
 com\example\config\mapper\ConfigMapperImpl.class
 com\example\config\handle_exception\APIExceptionHandler.class
 com\example\config\repository\ConfigRepository.class
@@ -20,3 +19,4 @@ com\example\config\base\Status.class
 com\example\config\base\LoadMore.class
 com\example\config\ConfigApplication.class
 com\example\config\service\ConfigService.class
+com\example\config\entity\ConfigEntity.class

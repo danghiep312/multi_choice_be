@@ -31,4 +31,8 @@ public class QuestionController {
         return BaseResponse.success(questionService.getQuestionsByQuiz(quizId));
     }
 
+    @GetMapping("/hello")
+    BaseResponse<String> hello() {
+        return BaseResponse.success("Hello from question");
+    }
 }

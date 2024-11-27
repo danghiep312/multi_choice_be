@@ -1,0 +1,184 @@
+version: "3.9"
+services:
+  postgresdb:
+    image: postgres:latest
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "sh -c 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}'",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Abc@123
+    ports:
+      - "5434:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  eureka-server:
+    image: eureka-server:latest
+    hostname: eureka-server
+    restart: unless-stopped
+    container_name: eureka-server
+    depends_on:
+      postgresdb:
+        condition: service_healthy
+    ports:
+      - "8762:8761"
+
+  user-service:
+    image: user-service:latest
+    restart: unless-stopped
+    container_name: user-service
+    ports:
+      - "8081:8081"
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+
+  quiz-service:
+    image: quiz-service:latest
+    restart: always
+    container_name: quiz-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    ports:
+      - "8086:8086"
+
+  question-service:
+    image: question-service:latest
+    restart: unless-stopped
+    container_name: question-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    ports:
+      - "8082:8082"
+
+  notification-service:
+    image: notification-service:latest
+    restart: always
+    container_name: notification-service
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=localhost:29092
+    network_mode: "host"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis-data:/root/redis
+      - ./config/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=Abc@123
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=quiz-lab
+
+  join-quiz-service:
+    image: join-quiz-service:latest
+    restart: always
+    container_name: join-quiz-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - KAFKA_BOOTSTRAP_SERVERS=localhost:29092
+      - FE_HOST=quiz.portlycat.com
+    ports:
+      - "8080:8080"
+
+
+  create-quiz-service:
+    image: create-quiz-service:latest
+    restart: always
+    container_name: create-quiz-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - KAFKA_BOOTSTRAP_SERVERS=localhost:29092
+      - FE_HOST=quiz.portlycat.com
+    ports:
+      - "8083:8083"
+
+
+  config-service:
+    image: config-service:latest
+    restart: always
+    container_name: config-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    ports:
+      - "8085:8085"
+
+  auth-service:
+    image: auth-service:latest
+    restart: always
+    container_name: auth-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+
+
+  answer-service:
+    image: answer-service:latest
+    restart: always
+    container_name: answer-service
+    environment:
+      - DATASOURCE_URL=jdbc:postgresql://postgresdb:5432/quiz_lab?createDatabaseIfNotExist=true
+      - DATASOURCE_USERNAME=postgres
+      - DATASOURCE_PASSWORD=Abc@123
+      - EUREKA_URL=http://eureka-server:8761/eureka
+
+
+volumes:
+  db-data:
+  redis-data:

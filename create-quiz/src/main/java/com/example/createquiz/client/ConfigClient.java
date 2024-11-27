@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-@FeignClient(name = "config-service")
+@FeignClient(name = "config-service", url = "localhost:8085")
 public interface ConfigClient {
     @PostMapping("/api/v1/config")
     BaseResponse<ConfigOutputDto> create(@RequestBody @Valid ConfigInputDto config);

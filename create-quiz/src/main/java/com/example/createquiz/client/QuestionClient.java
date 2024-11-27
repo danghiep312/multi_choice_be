@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
-@FeignClient(name = "question-service")
+@FeignClient(name = "question-service", url = "localhost:8082")
 public interface QuestionClient {
     @PostMapping("/api/v1/questions")
     BaseResponse<QuestionOutputDto> create(@RequestBody @Valid QuestionInputDto question);

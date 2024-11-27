@@ -2,14 +2,11 @@ package com.example.config.service;
 
 import com.example.config.dto.ConfigInputDto;
 import com.example.config.dto.ConfigOutputDto;
-import com.example.config.entitiy.ConfigEntity;
+import com.example.config.entity.ConfigEntity;
 import com.example.config.exeption.NotFoundException;
 import com.example.config.mapper.ConfigMapper;
 import com.example.config.repository.ConfigRepository;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ConfigServiceImpl implements ConfigService {

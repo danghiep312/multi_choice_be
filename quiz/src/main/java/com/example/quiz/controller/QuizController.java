@@ -25,4 +25,8 @@ public class QuizController {
         return BaseResponse.success(quizService.create(quiz));
     }
 
+    @GetMapping("/hello")
+    BaseResponse<String> hello() {
+        return BaseResponse.success("Hello from quiz");
+    }
 }
